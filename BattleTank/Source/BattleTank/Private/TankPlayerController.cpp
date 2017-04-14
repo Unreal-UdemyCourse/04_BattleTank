@@ -17,3 +17,17 @@ void ATankPlayerController::BeginPlay()
 	if(Tank)
 	UE_LOG(LogTemp, Warning, TEXT("Player controlled tank's name is %s"), *(Tank->GetName()))
 }
+
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+}
+
+void ATankPlayerController::AimTowardsCrosshair()
+{
+	if (!GetControlledTank()) { return; }
+
+	// Get world location if linetrace through crosshair
+	// if it hits the landscape
+		// Tell controlled tank to aim at this point
+}
