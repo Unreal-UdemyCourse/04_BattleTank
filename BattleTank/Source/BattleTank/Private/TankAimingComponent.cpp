@@ -38,13 +38,8 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void UTankAimingComponent::AimAt(FVector WorldSpace)
+void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
-	if (Barrel)
-	{
-		auto BarrelLocation = Barrel->GetSocketLocation("Barrel");
-		UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s from %s"),
-			*GetOwner()->GetName(), *WorldSpace.ToString(), *BarrelLocation.ToString())
-	}
+		UE_LOG(LogTemp, Warning, TEXT("Firing at %f cm/s"), LaunchSpeed)
 }
 
