@@ -43,7 +43,7 @@ void UTankAimingComponent::MoveTurret(FVector AimDirection)
 	auto TurretRotator = Turret->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - TurretRotator;
-	UE_LOG(LogTemp, Warning, TEXT("DeltaRotator = %f"), DeltaRotator.Yaw)
+	
 	Turret->Rotate(DeltaRotator.Yaw);
 }
 
