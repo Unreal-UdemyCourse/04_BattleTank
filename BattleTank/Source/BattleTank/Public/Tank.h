@@ -5,9 +5,9 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h" // Put new includes above
 
+class AProjectile;
 class UTankBarrel;
 class UTankTurret;
-class AProjectile;
 class UTankAimingComponent; // Forward declaration
 
 UCLASS()
@@ -41,10 +41,10 @@ private:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	UPROPERTY(EditAnywhere, Category = Firing)
-	float LaunchSpeed = 100000.f; // TODO Find reasonable default value
+	float LaunchSpeed = 4000.f; // TODO Find reasonable default value
 
 	UPROPERTY(EditAnywhere, Category = Setup)
-	TSubclassOf<AProjectile> ProjectileBlueprint; // alternative TSubclassOf
+	TSubclassOf<AProjectile> ProjectileBlueprint;
 
 	UTankBarrel* Barrel = nullptr;
 	
