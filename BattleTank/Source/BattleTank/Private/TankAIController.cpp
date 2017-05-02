@@ -16,10 +16,21 @@ void ATankAIController::BeginPlay()
 void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	
+	// Move towards the player
+	MoveToActor(
+		Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn()),
+		AcceptanceRadius,
+		true,
+		true,
+		false,
+		0,
+		true
+		);
 
-		// Aim towards the player
-		Cast<ATank>(GetPawn())->AimAt(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
+	// Aim towards the player
+	Cast<ATank>(GetPawn())->AimAt(GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation());
 
-		// TODO Fire if ready
-		Cast<ATank>(GetPawn())->Fire();
+	// TODO Fire if ready
+	Cast<ATank>(GetPawn())->Fire();
 }
