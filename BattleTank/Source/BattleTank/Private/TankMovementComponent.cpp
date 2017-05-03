@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Matt McCaw
 
 #include "BattleTank.h"
 #include "TankTrack.h"
@@ -43,7 +43,12 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
 	// The dot product will determine how parallel it's forward direction is and drive with a speed based on the parallelness.
 	auto ForwardThrow = FVector::DotProduct(TankForward, AIForwardIntention);
 
+	// The cross product will determine how perpendicular it's forward direction is and will turn with a speed based on the perpendicularness.
+	auto TurnThrow = FVector::CrossProduct(TankForward, AIForwardIntention).Z;
+
 	IntendMoveForward(ForwardThrow);
+	IntendTurnRight(TurnThrow);
+
 	//UE_LOG(LogTemp, Warning, TEXT("%s: MoveVelocity = %s"), *TankForward.ToString(),  *AIForwardIntention.ToString())
 
 }
