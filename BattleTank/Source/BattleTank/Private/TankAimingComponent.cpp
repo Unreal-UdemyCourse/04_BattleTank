@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Matt McCaw
 
 #include "BattleTank.h"
 #include "TankBarrel.h"
@@ -16,21 +16,18 @@ UTankAimingComponent::UTankAimingComponent()
 	// ...
 }
 
-
-void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet)
+void UTankAimingComponent::Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet)
 {
 	if (!BarrelToSet) { return; }
 	Barrel = BarrelToSet;
-}
 
-void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet)
-{
 	if (!TurretToSet) { return; }
 	Turret = TurretToSet;
 }
 
 void UTankAimingComponent::MoveBarrel(FVector AimDirection)
 {
+	if (!Barrel || !Turret) { return; }
 	auto BarrelRotator = Barrel->GetForwardVector().Rotation();
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
@@ -45,15 +42,6 @@ void UTankAimingComponent::MoveTurret(FVector AimDirection)
 	auto DeltaRotator = AimAsRotator - TurretRotator;
 	
 	Turret->Rotate(DeltaRotator.Yaw);
-}
-
-// Called when the game starts
-void UTankAimingComponent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	// ...
-	
 }
 
 // Called every frame
