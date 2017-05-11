@@ -48,7 +48,4 @@ void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool
 
 	IntendMoveForward(ForwardThrow);
 	IntendTurnRight(TurnThrow);
-
-	//UE_LOG(LogTemp, Warning, TEXT("%s: MoveVelocity = %s"), *TankForward.ToString(),  *AIForwardIntention.ToString())
-
 }

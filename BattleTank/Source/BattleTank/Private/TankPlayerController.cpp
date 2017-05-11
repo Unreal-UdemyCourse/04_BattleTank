@@ -15,8 +15,6 @@ void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 	ATank* Tank = GetControlledTank();
-	if(Tank)
-	UE_LOG(LogTemp, Warning, TEXT("Player controlled tank's name is %s"), *(Tank->GetName()))
 }
 
 void ATankPlayerController::Tick(float DeltaTime)
