@@ -20,12 +20,14 @@ ATank::ATank()
 void ATank::BeginPlay()
 {
 	Super::BeginPlay(); // Needed for Blueprint BeginPlay
+
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 // Aim at cursor raycast hit location
 void ATank::AimAt(FVector HitLocation)
 {
-	if (!TankAimingComponent) { return; }
+	if (!ensure(TankAimingComponent)) { return; }
 	TankAimingComponent->AimAt(HitLocation, LaunchSpeed);
 }
 
@@ -34,7 +36,7 @@ void ATank::Fire()
 {
 	bool bIsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
 
-	if (Barrel && bIsReloaded) {
+	if (ensure(Barrel) && bIsReloaded) {
 			// Spawn a projectile at the projectile socket
 			auto Projectile = GetWorld()->SpawnActor<AProjectile>
 			(
