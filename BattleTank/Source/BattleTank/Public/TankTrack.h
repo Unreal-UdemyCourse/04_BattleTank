@@ -22,6 +22,10 @@ public:
 		float TrackMaxDrivingForce = 107200.f;
 
 private:
+	UTankTrack();
+	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+	virtual void BeginPlay() override;
 
-	
+	UFUNCTION(BlueprintCallable, Category = "Events")
+		void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
 };
