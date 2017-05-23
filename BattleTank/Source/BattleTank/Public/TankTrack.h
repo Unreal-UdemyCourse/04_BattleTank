@@ -23,9 +23,12 @@ public:
 
 private:
 	UTankTrack();
-	virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
+	void ApplySidewaysForce();
 	virtual void BeginPlay() override;
+	void UTankTrack::DriveTrack();
 
 	UFUNCTION(BlueprintCallable, Category = "Events")
 		void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+
+	float CurrentThrottle = 0;
 };
